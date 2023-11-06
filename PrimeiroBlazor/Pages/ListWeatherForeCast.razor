@@ -1,0 +1,42 @@
+﻿@page "/weatherforecast"
+@using PrimeiroBlazor.Services.Interface
+@using PrimeiroBlazor.Models
+@inject IWeatherforecast weatherForecast
+
+<h3>Lista de Previsões do Tempo</h3>
+
+@if (weathers != null)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Data</th>
+                <th>Temperatura (°C)</th>
+                <th>Tempo</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var weather in weathers)
+            {
+                <tr>
+                    <td>@weather.Date.ToShortDateString()</td>
+                    <td>@weather.TemperatureC</td>
+                    <td>@weather.Summary</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>Carregando...</p>
+}
+
+@code {
+    private List<WeatherForecast> weathers;
+
+    protected override async Task OnInitializedAsync()
+    {
+        weathers = await weatherForecast.GetAll();
+    }
+}
