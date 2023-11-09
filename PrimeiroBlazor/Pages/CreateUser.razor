@@ -1,0 +1,45 @@
+﻿<div class="text-center">
+    <h3>Criar um novo usuário</h3>
+
+</div>
+@page "/createuser"
+@inject IJSRuntime JsRunTime
+
+<div class="row">
+    <div class="col">
+        <input class="form-control" placeholder="RA" type="text" />
+
+    </div>
+    <div class="col">
+        <input class="form-control" placeholder="Email" type="email" @bind="email"/>
+
+    </div>
+</div>
+
+
+<div class="row mt-3">
+    <div class="col">
+        <input class="form-control" placeholder="Senha" type="password" value="" />
+
+    </div>
+    <div class="col">
+        <input class="form-control" placeholder="Repita a senha" type="password" />
+    </div>
+</div>
+
+<div class="row mt-3">
+    <div class="col text-center">
+        <button class="btn btn-primary btn-lg" @onclick="Test">Criar</button>
+    </div>
+</div>
+
+
+@code {
+    private string email = string.Empty;
+
+    private void Test()
+    {
+        JsRunTime.InvokeAsync<bool>("alert", email);
+    }
+
+}

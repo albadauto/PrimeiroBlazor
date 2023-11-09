@@ -10,4 +10,5 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 builder.Services.AddSingleton<IWeatherforecast, WeatherForecastService>();
+builder.Services.AddScoped<IGameService, GameService>();
 await builder.Build().RunAsync();
